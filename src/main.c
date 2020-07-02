@@ -1,17 +1,30 @@
 #include "main.h"
 
-int main() {
-    struct point p;
+static size_t ENTITIES = -1;
 
-    uint8_t *x = &p.pos.x;
-    uint8_t *y = &p.pos.y;
+typedef struct component_lists
+{
+    Position position_components[10];
+    Health health_components[10];
 
-    *x = 1;
-    *y = -1;
-    p.name = malloc(sizeof(char) * 5);
-    strcpy(p.name, "Point");
+    size_t total_position_components;
+    size_t total_health_components;
+} ComponentLists;
 
-    printf("Point coords: %d %d \nPoint name: %s\n", *x, *y, p.name);
+void create_entity(ComponentLists* components)
+{
+    size_t id = ENTITIES++;
+    components->position_components[id].entity_id = id;
+}
+
+
+int main()
+{
+    ComponentLists *components;
+    
+    create_entity(components);
+
     printf("Main\n");
+    printf("Entity ID: %ld \n", components->position_components[ENTITIES].entity_id);
     return 0;
 }

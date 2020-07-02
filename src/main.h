@@ -3,12 +3,14 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct coords {
+typedef struct position {
+    size_t entity_id;
     uint8_t x;
     uint8_t y;
-} coords;
+} Position;
 
-struct point {
-    coords pos;
-    char* name;
-};
+typedef struct health {
+    size_t entity_id;
+    uint8_t current_health;
+    uint8_t max_health;
+} Health;
